@@ -453,7 +453,7 @@ public class ParseEscPos
                     predefinedParameterMatched = i1;
                 }
             }
-            commandParamDesc[parameter] += "\r\n";
+            //commandParamDesc[parameter] += "\r\n";
             if ((commandParamDbLineNum[parameter] + predefinedParameterMatched + 1) < commandDbLineNum + commandDbHeight && predefinedFound == true)
             {
                 commandParamDesc[parameter] += commandDataBase.Rows[commandParamDbLineNum[parameter] + predefinedParameterMatched + 1][CSVColumns.CommandDescription].ToString();
@@ -501,41 +501,6 @@ public class ParseEscPos
         if (itIsReply) commandBlockLength += 3;
         return commandBlockLength;
     }
-
-    /*public static string FormatHexString(string inStr)
-    {
-        string outStr = "";
-        if (inStr != "")
-        {
-            char[] str = inStr.ToCharArray(0, inStr.Length);
-            string tmpStr = "";
-            for (int i = 0; i < inStr.Length; i++)
-            {
-                if ((str[i] >= 'A' && str[i] <= 'F') || (str[i] >= 'a' && str[i] <= 'f') || (str[i] >= '0' && str[i] <= '9'))
-                {
-                    tmpStr += str[i].ToString();
-                }
-                else if ((str[i] == ' ' || str[i] == '_') && tmpStr.Length > 0)
-                {
-                    for (int i1 = 0; i1 < 2 - tmpStr.Length; i1++) outStr += "0";
-                    outStr += tmpStr + str[i];
-                    tmpStr = "";
-                }
-                if (tmpStr.Length == 2)
-                {
-                    outStr += tmpStr + " ";
-                    tmpStr = "";
-                }
-            }
-            if (tmpStr != "")
-            {
-                for (int i = 0; i < 2 - tmpStr.Length; i++) outStr += "0";
-                outStr += tmpStr + " ";
-            }
-            return outStr.ToUpperInvariant();
-        }
-        else return ("");
-    }*/
 
     public static byte Q3xf_CRC(byte[] data, int length)
     {
