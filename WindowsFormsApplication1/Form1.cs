@@ -43,7 +43,7 @@ namespace WindowsFormsApplication1
             ResultDatabase.Columns.Add("Type");
             ResultDatabase.Columns.Add("Raw");
             ParseEscPos.commandDataBase = CommandDatabase;
-            ParseEscPos.sourceData = textBox_code.Text;
+            ParseEscPos.sourceData.AddRange(Accessory.ConvertHexToByteArray(textBox_code.Text));
             for (int i = 0; i < dataGridView_commands.Columns.Count; i++) dataGridView_commands.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             for (int i = 0; i < dataGridView_result.Columns.Count; i++) dataGridView_result.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
 
@@ -158,7 +158,7 @@ namespace WindowsFormsApplication1
                         DataRow row = ResultDatabase.NewRow();
                         row[ResultColumns.Value] = ParseEscPos.commandParamValue[i];
                         row[ResultColumns.Type] = ParseEscPos.commandParamType[i];
-                        row[ResultColumns.Raw] = ParseEscPos.commandParamRAWValue[i];
+                        row[ResultColumns.Raw] = Accessory.ConvertByteArrayToHex(ParseEscPos.commandParamRAWValue[i].ToArray());
                         row[ResultColumns.Description] = ParseEscPos.commandParamDesc[i];
                         if (ParseEscPos.commandParamType[i].ToLower() == ParseEscPos.DataTypes.Error) row[ResultColumns.Description] += ": " + GetErrorDesc(int.Parse(ParseEscPos.commandParamValue[i]));
                         ResultDatabase.Rows.Add(row);
@@ -190,8 +190,7 @@ namespace WindowsFormsApplication1
                 textBox_code.Select(textBox_code.SelectionStart, i);
                 if (sender != button_auto)
                 {
-                    textBox_command.Text += "";
-                    textBox_command.Text += "\"" + (String)textBox_code.SelectedText + "\"";
+                    textBox_command.Text = "\"" + (String)textBox_code.SelectedText + "\"";
                     //textBox_commandDesc.Text = "\"" + (String)textBox_code.SelectedText + "\"";
                     dataGridView_commands.CurrentCell = dataGridView_commands.Rows[0].Cells[0];
                     if (Accessory.PrintableHex(textBox_code.SelectedText)) textBox_commandDesc.Text = "\"" + Encoding.GetEncoding(CustomFiscalParser.Properties.Settings.Default.CodePage).GetString(Accessory.ConvertHexToByteArray(textBox_code.SelectedText)) + "\"";
@@ -248,7 +247,7 @@ namespace WindowsFormsApplication1
 
                         saveStr.Append("[" + ParseEscPos.commandParamType[i] + "] - \"" + ParseEscPos.commandParamDesc[i].TrimStart('\r').TrimStart('\n').TrimStart('\r').TrimStart('\n').TrimEnd('\r').TrimEnd('\n').TrimEnd('\r').TrimEnd('\n').Replace("\n", "\n\t\t\t\t"));
                         if (ParseEscPos.commandParamType[i].ToLower() == ParseEscPos.DataTypes.Error) saveStr.Append(": " + GetErrorDesc(int.Parse(ParseEscPos.commandParamValue[i])));
-                        saveStr.Append("\", RAW [" + ParseEscPos.commandParamRAWValue[i] + "]\r\n");
+                        saveStr.Append("\", RAW [" + Accessory.ConvertByteArrayToHex(ParseEscPos.commandParamRAWValue[i].ToArray()) + "]\r\n");
 
                         if (ParseEscPos.commandParamType[i].ToLower() == ParseEscPos.DataTypes.Bitfield)
                         {
@@ -289,7 +288,7 @@ namespace WindowsFormsApplication1
             {
                 textBox_code.Text = Accessory.CheckHexString(textBox_code.Text);
                 //ParseEscPos.Init(textBox_code.Text, CommandDatabase);
-                ParseEscPos.sourceData = textBox_code.Text;
+                ParseEscPos.sourceData.AddRange(Accessory.ConvertHexToByteArray(textBox_code.Text));
             }
         }
 
@@ -424,7 +423,7 @@ namespace WindowsFormsApplication1
                 textBox_code.Text = Accessory.ConvertByteArrayToHex(sourceData.ToArray());
                 textBox_code.Select(0, 0);
                 //ParseEscPos.Init(textBox_code.Text, CommandDatabase);
-                ParseEscPos.sourceData = textBox_code.Text;
+                ParseEscPos.sourceData.AddRange(Accessory.ConvertHexToByteArray(textBox_code.Text));
             }
             else if (openFileDialog.Title == "Open HEX file") //hex text read
             {
@@ -442,7 +441,7 @@ namespace WindowsFormsApplication1
                 sourceData.AddRange(Accessory.ConvertHexToByteArray(textBox_code.Text));
                 textBox_code.Select(0, 0);
                 //ParseEscPos.Init(textBox_code.Text, CommandDatabase);
-                ParseEscPos.sourceData = textBox_code.Text;
+                ParseEscPos.sourceData.AddRange(Accessory.ConvertHexToByteArray(textBox_code.Text));
             }
             else if (openFileDialog.Title == "Open command CSV database") //hex text read
             {
