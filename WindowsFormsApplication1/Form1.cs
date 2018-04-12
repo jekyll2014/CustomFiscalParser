@@ -10,7 +10,6 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        //int maxCommandLength = 0;
         DataTable CommandDatabase = new DataTable();
         DataTable ErrorsDatabase = new DataTable();
         DataTable ResultDatabase = new DataTable();
