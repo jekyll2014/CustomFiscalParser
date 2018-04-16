@@ -138,7 +138,7 @@ public class ParseEscPos
         int i = 0;
         if (lineNum != -1) i = lineNum;
         if (sourceData.Count < _pos + 1) return false; //check if it doesn't go over the last symbol
-        for (i=i; i < commandDataBase.Rows.Count; i++)
+        for (; i < commandDataBase.Rows.Count; i++)
         {
             if (commandDataBase.Rows[i][CSVColumns.CommandName].ToString() != "")
             {
