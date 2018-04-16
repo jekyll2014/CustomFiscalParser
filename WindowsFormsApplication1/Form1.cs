@@ -10,7 +10,6 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        //int maxCommandLength = 0;
         DataTable CommandDatabase = new DataTable();
         DataTable ErrorsDatabase = new DataTable();
         DataTable ResultDatabase = new DataTable();
@@ -137,10 +136,6 @@ namespace WindowsFormsApplication1
                     textBox_code.SelectionStart--;
                 }
             }
-            /*if (sender != button_find)
-            {
-                textBox_code.SelectionStart = textBox_code.SelectionStart + textBox_code.SelectionLength;
-            }*/
             label_currentPosition.Text = textBox_code.SelectionStart.ToString() + "/" + textBox_code.TextLength.ToString();
             if (ParseEscPos.FindCommand(textBox_code.SelectionStart))
             {
@@ -191,7 +186,6 @@ namespace WindowsFormsApplication1
                 if (sender != button_auto)
                 {
                     textBox_command.Text = "\"" + (String)textBox_code.SelectedText + "\"";
-                    //textBox_commandDesc.Text = "\"" + (String)textBox_code.SelectedText + "\"";
                     dataGridView_commands.CurrentCell = dataGridView_commands.Rows[0].Cells[0];
                     if (Accessory.PrintableHex(textBox_code.SelectedText)) textBox_commandDesc.Text = "\"" + Encoding.GetEncoding(CustomFiscalParser.Properties.Settings.Default.CodePage).GetString(Accessory.ConvertHexToByteArray(textBox_code.SelectedText)) + "\"";
                 }
@@ -288,7 +282,6 @@ namespace WindowsFormsApplication1
             if (textBox_code.ReadOnly == false)
             {
                 textBox_code.Text = Accessory.CheckHexString(textBox_code.Text);
-                //ParseEscPos.Init(textBox_code.Text, CommandDatabase);
                 ParseEscPos.sourceData.AddRange(Accessory.ConvertHexToByteArray(textBox_code.Text));
             }
         }
@@ -420,10 +413,8 @@ namespace WindowsFormsApplication1
                 {
                     MessageBox.Show("\r\nError reading file " + SourceFile + ": " + ex.Message);
                 }
-                //Form1.ActiveForm.Text += " " + SourceFile;
                 textBox_code.Text = Accessory.ConvertByteArrayToHex(sourceData.ToArray());
                 textBox_code.Select(0, 0);
-                //ParseEscPos.Init(textBox_code.Text, CommandDatabase);
                 ParseEscPos.sourceData.AddRange(Accessory.ConvertHexToByteArray(textBox_code.Text));
             }
             else if (openFileDialog.Title == "Open HEX file") //hex text read
@@ -437,11 +428,9 @@ namespace WindowsFormsApplication1
                 {
                     MessageBox.Show("\r\nError reading file " + SourceFile + ": " + ex.Message);
                 }
-                //Form1.ActiveForm.Text += " " + SourceFile;
                 sourceData.Clear();
                 sourceData.AddRange(Accessory.ConvertHexToByteArray(textBox_code.Text));
                 textBox_code.Select(0, 0);
-                //ParseEscPos.Init(textBox_code.Text, CommandDatabase);
                 ParseEscPos.sourceData.AddRange(Accessory.ConvertHexToByteArray(textBox_code.Text));
             }
             else if (openFileDialog.Title == "Open command CSV database") //hex text read
@@ -488,16 +477,6 @@ namespace WindowsFormsApplication1
                 if (int.Parse(ErrorsDatabase.Rows[i][0].ToString()) == errNum) return ErrorsDatabase.Rows[i][1].ToString();
             }
             return "!!!Unknown error!!!";
-        }
-
-        public static bool PrintableHex(string str)
-        {
-            for (int i = 0; i < str.Length; i += 3)
-            {
-                if (!byte.TryParse(str.Substring(i, 3), NumberStyles.HexNumber, null, out byte n)) return false;
-                else if (n < 32 && n != 0) return false;
-            }
-            return true;
         }
 
         private void ToolStripTextBox1_Leave(object sender, EventArgs e)
