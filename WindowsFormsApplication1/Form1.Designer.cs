@@ -47,10 +47,13 @@
             this.saveHexFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LoadCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadErrorsCSV_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cSVFileNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.defaultCSVToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.errorsCSVFileName_toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.errorsCSV_toolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.enableDatabaseEditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableFileEditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -61,9 +64,6 @@
             this.textBox_command = new System.Windows.Forms.TextBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.label_currentPosition = new System.Windows.Forms.Label();
-            this.errorsCSVFileName_toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.errorsCSV_toolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.loadErrorsCSV_toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_commands)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_result)).BeginInit();
             this.menuStrip.SuspendLayout();
@@ -95,7 +95,7 @@
             this.textBox_code.Name = "textBox_code";
             this.textBox_code.ReadOnly = true;
             this.textBox_code.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_code.Size = new System.Drawing.Size(239, 255);
+            this.textBox_code.Size = new System.Drawing.Size(237, 253);
             this.textBox_code.TabIndex = 0;
             this.textBox_code.Text = resources.GetString("textBox_code.Text");
             this.textBox_code.Leave += new System.EventHandler(this.TextBox_code_Leave);
@@ -125,7 +125,7 @@
             this.dataGridView_commands.ReadOnly = true;
             this.dataGridView_commands.RowHeadersVisible = false;
             this.dataGridView_commands.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_commands.Size = new System.Drawing.Size(792, 288);
+            this.dataGridView_commands.Size = new System.Drawing.Size(788, 284);
             this.dataGridView_commands.TabIndex = 2;
             // 
             // dataGridView_result
@@ -144,7 +144,7 @@
             this.dataGridView_result.ReadOnly = true;
             this.dataGridView_result.RowHeadersVisible = false;
             this.dataGridView_result.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_result.Size = new System.Drawing.Size(545, 133);
+            this.dataGridView_result.Size = new System.Drawing.Size(543, 131);
             this.dataGridView_result.TabIndex = 3;
             // 
             // button_auto
@@ -210,7 +210,7 @@
             this.textBox_commandDesc.Name = "textBox_commandDesc";
             this.textBox_commandDesc.ReadOnly = true;
             this.textBox_commandDesc.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_commandDesc.Size = new System.Drawing.Size(348, 100);
+            this.textBox_commandDesc.Size = new System.Drawing.Size(347, 96);
             this.textBox_commandDesc.TabIndex = 14;
             this.textBox_commandDesc.TabStop = false;
             // 
@@ -237,55 +237,62 @@
             this.loadErrorsCSV_toolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // loadBinToolStripMenuItem
             // 
             this.loadBinToolStripMenuItem.Name = "loadBinToolStripMenuItem";
-            this.loadBinToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.loadBinToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.loadBinToolStripMenuItem.Text = "Load binary file";
             this.loadBinToolStripMenuItem.Click += new System.EventHandler(this.LoadBinToolStripMenuItem_Click);
             // 
             // loadHexToolStripMenuItem
             // 
             this.loadHexToolStripMenuItem.Name = "loadHexToolStripMenuItem";
-            this.loadHexToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.loadHexToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.loadHexToolStripMenuItem.Text = "Load HEX text file";
             this.loadHexToolStripMenuItem.Click += new System.EventHandler(this.LoadHexToolStripMenuItem_Click);
             // 
             // saveBinFileToolStripMenuItem
             // 
             this.saveBinFileToolStripMenuItem.Name = "saveBinFileToolStripMenuItem";
-            this.saveBinFileToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.saveBinFileToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.saveBinFileToolStripMenuItem.Text = "Save binary file";
             this.saveBinFileToolStripMenuItem.Click += new System.EventHandler(this.SaveBinFileToolStripMenuItem_Click);
             // 
             // saveHexFileToolStripMenuItem
             // 
             this.saveHexFileToolStripMenuItem.Name = "saveHexFileToolStripMenuItem";
-            this.saveHexFileToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.saveHexFileToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.saveHexFileToolStripMenuItem.Text = "Save HEX text file";
             this.saveHexFileToolStripMenuItem.Click += new System.EventHandler(this.SaveHexFileToolStripMenuItem_Click);
             // 
             // LoadCSVToolStripMenuItem
             // 
             this.LoadCSVToolStripMenuItem.Name = "LoadCSVToolStripMenuItem";
-            this.LoadCSVToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.LoadCSVToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.LoadCSVToolStripMenuItem.Text = "Load commands database";
             this.LoadCSVToolStripMenuItem.Click += new System.EventHandler(this.LoadCSVToolStripMenuItem_Click);
             // 
             // saveCSVToolStripMenuItem
             // 
             this.saveCSVToolStripMenuItem.Name = "saveCSVToolStripMenuItem";
-            this.saveCSVToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.saveCSVToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.saveCSVToolStripMenuItem.Text = "Save database";
             this.saveCSVToolStripMenuItem.Click += new System.EventHandler(this.SaveCSVToolStripMenuItem_Click);
+            // 
+            // loadErrorsCSV_toolStripMenuItem
+            // 
+            this.loadErrorsCSV_toolStripMenuItem.Name = "loadErrorsCSV_toolStripMenuItem";
+            this.loadErrorsCSV_toolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.loadErrorsCSV_toolStripMenuItem.Text = "Load errors database";
+            this.loadErrorsCSV_toolStripMenuItem.Click += new System.EventHandler(this.LoadErrorsCSV_toolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -297,7 +304,7 @@
             this.enableDatabaseEditToolStripMenuItem,
             this.enableFileEditToolStripMenuItem});
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.aboutToolStripMenuItem.Text = "Settings";
             // 
             // cSVFileNameToolStripMenuItem
@@ -305,27 +312,42 @@
             this.cSVFileNameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.defaultCSVToolStripTextBox});
             this.cSVFileNameToolStripMenuItem.Name = "cSVFileNameToolStripMenuItem";
-            this.cSVFileNameToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.cSVFileNameToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.cSVFileNameToolStripMenuItem.Text = "Default commands CSV";
             // 
             // defaultCSVToolStripTextBox
             // 
             this.defaultCSVToolStripTextBox.Name = "defaultCSVToolStripTextBox";
-            this.defaultCSVToolStripTextBox.Size = new System.Drawing.Size(100, 21);
+            this.defaultCSVToolStripTextBox.Size = new System.Drawing.Size(100, 23);
             this.defaultCSVToolStripTextBox.Text = "q3f_commands.csv";
             this.defaultCSVToolStripTextBox.Leave += new System.EventHandler(this.DefaultCSVToolStripTextBox_Leave);
+            // 
+            // errorsCSVFileName_toolStripMenuItem1
+            // 
+            this.errorsCSVFileName_toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.errorsCSV_toolStripTextBox});
+            this.errorsCSVFileName_toolStripMenuItem1.Name = "errorsCSVFileName_toolStripMenuItem1";
+            this.errorsCSVFileName_toolStripMenuItem1.Size = new System.Drawing.Size(199, 22);
+            this.errorsCSVFileName_toolStripMenuItem1.Text = "Default errors CSV";
+            // 
+            // errorsCSV_toolStripTextBox
+            // 
+            this.errorsCSV_toolStripTextBox.Name = "errorsCSV_toolStripTextBox";
+            this.errorsCSV_toolStripTextBox.Size = new System.Drawing.Size(100, 23);
+            this.errorsCSV_toolStripTextBox.Text = "q3f_errors.csv";
+            this.errorsCSV_toolStripTextBox.Leave += new System.EventHandler(this.ToolStripTextBox1_Leave);
             // 
             // enableDatabaseEditToolStripMenuItem
             // 
             this.enableDatabaseEditToolStripMenuItem.Name = "enableDatabaseEditToolStripMenuItem";
-            this.enableDatabaseEditToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.enableDatabaseEditToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.enableDatabaseEditToolStripMenuItem.Text = "Enable database edit";
             this.enableDatabaseEditToolStripMenuItem.Click += new System.EventHandler(this.EnableDatabaseEditToolStripMenuItem_Click);
             // 
             // enableFileEditToolStripMenuItem
             // 
             this.enableFileEditToolStripMenuItem.Name = "enableFileEditToolStripMenuItem";
-            this.enableFileEditToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.enableFileEditToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.enableFileEditToolStripMenuItem.Text = "Enable file edit";
             this.enableFileEditToolStripMenuItem.Click += new System.EventHandler(this.EnableFileEditToolStripMenuItem_Click);
             // 
@@ -340,7 +362,7 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
@@ -358,6 +380,7 @@
             // 
             // splitContainer3
             // 
+            this.splitContainer3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
             this.splitContainer3.Name = "splitContainer3";
@@ -370,7 +393,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.dataGridView_result);
-            this.splitContainer3.Size = new System.Drawing.Size(545, 255);
+            this.splitContainer3.Size = new System.Drawing.Size(547, 257);
             this.splitContainer3.SplitterDistance = 118;
             this.splitContainer3.TabIndex = 17;
             // 
@@ -389,8 +412,8 @@
             // 
             this.splitContainer4.Panel2.Controls.Add(this.label_commandDesc);
             this.splitContainer4.Panel2.Controls.Add(this.textBox_commandDesc);
-            this.splitContainer4.Size = new System.Drawing.Size(545, 118);
-            this.splitContainer4.SplitterDistance = 187;
+            this.splitContainer4.Size = new System.Drawing.Size(543, 114);
+            this.splitContainer4.SplitterDistance = 186;
             this.splitContainer4.TabIndex = 0;
             // 
             // textBox_command
@@ -401,11 +424,12 @@
             this.textBox_command.Location = new System.Drawing.Point(3, 16);
             this.textBox_command.Multiline = true;
             this.textBox_command.Name = "textBox_command";
-            this.textBox_command.Size = new System.Drawing.Size(181, 99);
+            this.textBox_command.Size = new System.Drawing.Size(180, 95);
             this.textBox_command.TabIndex = 16;
             // 
             // splitContainer2
             // 
+            this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 24);
             this.splitContainer2.Name = "splitContainer2";
@@ -431,28 +455,6 @@
             this.label_currentPosition.Size = new System.Drawing.Size(118, 19);
             this.label_currentPosition.TabIndex = 29;
             this.label_currentPosition.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // errorsCSVFileName_toolStripMenuItem1
-            // 
-            this.errorsCSVFileName_toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.errorsCSV_toolStripTextBox});
-            this.errorsCSVFileName_toolStripMenuItem1.Name = "errorsCSVFileName_toolStripMenuItem1";
-            this.errorsCSVFileName_toolStripMenuItem1.Size = new System.Drawing.Size(184, 22);
-            this.errorsCSVFileName_toolStripMenuItem1.Text = "Default errors CSV";
-            // 
-            // errorsCSV_toolStripTextBox
-            // 
-            this.errorsCSV_toolStripTextBox.Name = "errorsCSV_toolStripTextBox";
-            this.errorsCSV_toolStripTextBox.Size = new System.Drawing.Size(100, 21);
-            this.errorsCSV_toolStripTextBox.Text = "q3f_errors.csv";
-            this.errorsCSV_toolStripTextBox.Leave += new System.EventHandler(this.ToolStripTextBox1_Leave);
-            // 
-            // loadErrorsCSV_toolStripMenuItem
-            // 
-            this.loadErrorsCSV_toolStripMenuItem.Name = "loadErrorsCSV_toolStripMenuItem";
-            this.loadErrorsCSV_toolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.loadErrorsCSV_toolStripMenuItem.Text = "Load errors database";
-            this.loadErrorsCSV_toolStripMenuItem.Click += new System.EventHandler(this.LoadErrorsCSV_toolStripMenuItem_Click);
             // 
             // Form1
             // 
