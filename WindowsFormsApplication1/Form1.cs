@@ -212,7 +212,7 @@ namespace WindowsFormsApplication1
                 Button_find_Click(button_auto, EventArgs.Empty);
                 if (ParseEscPos.commandName != "")
                 {
-                    ParseEscPos.FindCommandParameter();  //?????????????
+                    ParseEscPos.FindCommandParameter();
                     //Save ASCII string if collected till now
                     if (asciiString.Length!=0)
                     {
