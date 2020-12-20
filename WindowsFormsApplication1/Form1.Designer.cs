@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace CustomFiscalParser
 {
     partial class Form1
     {
